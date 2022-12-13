@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello RoomController!{% endblock %}
+
+ {% block javascripts %}
+            <script defer src = "{{ asset('js/roomCollection.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+
+
+ <div id="divForm" data-index={{ form.Roombeds|length }} data-template='{{ form_widget(form.Roombeds.vars.prototype)}}'></div>
+
+{{ form_start(form) }}
+   
+    {{form_row(form.description) }}
+    {{form_row(form.accomodation) }}
+    {% for roomDetail in form.Roombeds %}
+        <div>
+            {{ form_row(roomDetail.quantity) }}
+            {{ form_row(roomDetail.bed) }}
+            <button type="button" class="btn btn-dark removeBed">Supprimer</button>
+        </div>
+{% endfor %}
+    <div id="appendDiv"></div>
+    <button id="buttonPop" type="button">Ajouter Lit</button>
+    <button class="btn-dark btn" type="submit">Créer</button>
+{{ form_end(form) }}
+{% endblock %}

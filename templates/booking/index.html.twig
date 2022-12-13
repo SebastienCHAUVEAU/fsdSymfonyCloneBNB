@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello Booking!{% endblock %}
+
+{% block body %}
+{{ form_start(form) }}
+    {{form_rest(form) }}
+    <button class="btn-dark btn" type="submit">Créer</button>
+{{ form_end(form) }}
+{% endblock %}

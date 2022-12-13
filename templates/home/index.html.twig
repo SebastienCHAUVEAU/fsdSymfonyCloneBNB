@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+<style>
+.example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+.example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+{% if app.user %}
+<a href="/logout">Deconnexion</a>
+{% endif %}
+    <a href="/login">Connexion</a>
+</div>
+
+<a href="/register"><button class="btn btn-primary">Inscription</button></a>
+<a href="{{path('accomodation_create', {type: 'Boat'}) }}"><button class="btn btn-dark">Bateau</button></a>
+<a href="{{path('accomodation_create', {type: 'TreeHouse'}) }}"><button class="btn btn-dark">Cabane dans l'arbre</button></a>
+<a href="{{path('accomodation_create', {type: 'House'}) }}"><button class="btn btn-dark">Maison</button></a>
+<a href="{{path('accomodation_create', {type: 'Apartment'}) }}"><button class="btn btn-dark">Appartemment</button></a>
+
+
+<form action="/home/search">
+<input class="form-control" name="city" type="text" placeholder="Ville"/>
+<input class="form-control" name="people" type="number" placeholder="nombre de personnes" />
+<input class="form-control" name="dateA" type="date" />
+<input class="form-control" name="dateB" type="date" />
+<button type="submit" class="btn btn-success">Rechercher</button>
+</form>
+
+{% for acc in listSearch%}
+    {{acc.city}}
+    {{acc.address}}
+    {{acc.email}}
+    {{acc.getPeopleMax}}
+{% endfor %}
+{% endblock %}
